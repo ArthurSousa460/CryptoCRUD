@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserRepository = void 0;
 const client_1 = require("@prisma/client");
 class UserRepository {
     repository;
@@ -20,13 +19,23 @@ class UserRepository {
         });
         return newUser;
     }
+    async findUserById(id) {
+        const user = await this.repository.user.findFirst({
+            where: {
+                id: id
+            }
+        });
+        return user;
+    }
     async update(user) {
         const updatedUser = await this.repository.user.update({
             where: {
                 id: user.id
             },
             data: {
-                ...user
+                userDocument: user.userDocument,
+                creditCardToken: user.creditCardToken,
+                value: user.Value
             }
         });
         return updatedUser;
@@ -39,5 +48,21 @@ class UserRepository {
         });
         return deletedUser;
     }
+    async findUserByUserDocument(userDocument) {
+        const user = await this.repository.user.findFirst({
+            where: {
+                userDocument: userDocument
+            }
+        });
+        return user;
+    }
+    async findUserByCreditCardToken(creditCardToken) {
+        const user = await this.repository.user.findFirst({
+            where: {
+                creditCardToken: creditCardToken
+            }
+        });
+        return user;
+    }
 }
-exports.UserRepository = UserRepository;
+exports.default = UserRepository;

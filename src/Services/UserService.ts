@@ -33,9 +33,9 @@ export class UserService {
             throw new Error("User not found");
         }
 
-        const updateUser = await this.repository.update(user);
+        const updatedUser = await this.repository.update(user);
 
-        return updateUser;
+        return updatedUser;
 
     }
 

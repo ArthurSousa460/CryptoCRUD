@@ -55,7 +55,7 @@ export default class UserRepository {
         return deletedUser;
     }
 
-    public async getUserByUserDocument(userDocument: string): Promise<User>{
+    public async findUserByUserDocument(userDocument: string): Promise<User>{
         const user = await this.repository.user.findFirst({
             where: {
                 userDocument: userDocument
@@ -64,7 +64,7 @@ export default class UserRepository {
         return user;
     }
 
-    public async getUserByCreditCardToken(creditCardToken: string): Promise<User>{
+    public async findUserByCreditCardToken(creditCardToken: string): Promise<User>{
         const user = await this.repository.user.findFirst({
             where: {
                 creditCardToken: creditCardToken
