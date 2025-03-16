@@ -23,13 +23,24 @@ export default class UserRepository {
         return newUser;
     }
 
+    public async findUserById(id: number): Promise<User>{
+        const user = await this.repository.user.findFirst({
+            where: {
+                id: id
+            }
+        })
+        return user;
+    }
+
     public async update(user: UserDTO): Promise<User>{
         const updatedUser = await this.repository.user.update({
             where: {
                 id: user.id
             },
             data: {
-                ...user
+                userDocument: user.userDocument,
+                creditCardToken: user.creditCardToken,
+                value: user.Value
             }
         })
         return updatedUser;
