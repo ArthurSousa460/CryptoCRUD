@@ -26,12 +26,18 @@ class UserRepository {
                 id: user.id
             },
             data: {
-                userDocument: user.userDocument,
-                creditCardToken: user.creditCardToken,
-                value: user.Value
+                ...user
             }
         });
         return updatedUser;
+    }
+    async delete(id) {
+        const deletedUser = await this.repository.user.delete({
+            where: {
+                id: id
+            }
+        });
+        return deletedUser;
     }
 }
 exports.UserRepository = UserRepository;
