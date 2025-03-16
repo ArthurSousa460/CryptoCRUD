@@ -1,7 +1,7 @@
 import { PrismaClient, User } from "@prisma/client";
 import { UserDTO } from "../DTOs/UserDTO";
 
-export class UserRepository {
+export default class UserRepository {
     private repository: PrismaClient;
 
     constructor() {
@@ -42,5 +42,14 @@ export class UserRepository {
             }
         })
         return deletedUser;
+    }
+
+    public async getUserByUserDocument(userDocument: string): Promise<User>{
+        const user = await this.repository.user.findFirst({
+            where: {
+                userDocument: userDocument
+            }
+        })
+        return user;
     }
 }
