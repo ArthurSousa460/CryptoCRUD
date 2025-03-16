@@ -52,4 +52,13 @@ export default class UserRepository {
         })
         return user;
     }
+
+    public async getUserByCreditCardToken(creditCardToken: string): Promise<User>{
+        const user = await this.repository.user.findFirst({
+            where: {
+                creditCardToken: creditCardToken
+            }
+        })
+        return user;
+    }
 }
