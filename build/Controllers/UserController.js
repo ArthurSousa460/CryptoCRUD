@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserController = void 0;
 const UserService_1 = require("../Services/UserService");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
@@ -50,6 +51,7 @@ class UserController {
                 }));
                 return res.status(400).json({ "errors": err });
             }
+            dto.id = parseInt(req.params.id);
             res.status(200).json(await this.service.update(dto));
         }
         catch (error) {
@@ -73,3 +75,4 @@ class UserController {
         }
     }
 }
+exports.UserController = UserController;

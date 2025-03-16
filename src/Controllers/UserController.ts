@@ -3,7 +3,7 @@ import  { UserService } from "../Services/UserService";
 import { plainToInstance} from "class-transformer";
 import { validate } from "class-validator";
 import { UserDTO } from "../DTOs/UserDTO";
-class UserController {
+export class UserController {
     private service: UserService;
     constructor() {
         this.service = new UserService();
@@ -52,6 +52,7 @@ class UserController {
                 }))
                 return res.status(400).json({"errors": err});
             }
+            dto.id = parseInt(req.params.id);
             res.status(200).json(await this.service.update(dto));
         }catch (error) {
             if( error instanceof Error){
