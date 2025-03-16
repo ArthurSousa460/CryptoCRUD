@@ -1,0 +1,14 @@
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: cisco123
+      MYSQL_DATABASE: bank
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-volume:/var/lib/mysql
+volumes:
+  mysql-volume:
+    driver: local
