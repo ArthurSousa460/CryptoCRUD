@@ -1,14 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserController = void 0;
-const UserService_1 = require("../Services/UserService");
-const class_transformer_1 = require("class-transformer");
-const class_validator_1 = require("class-validator");
-const UserDTO_1 = require("../DTOs/UserDTO");
-class UserController {
+import { UserService } from "../Services/UserService.js";
+import { plainToInstance } from "class-transformer";
+import { validate } from "class-validator";
+import { UserDTO } from "../DTOs/UserDTO.js";
+export class UserController {
     service;
     constructor() {
-        this.service = new UserService_1.UserService();
+        this.service = new UserService();
     }
     async list(req, res) {
         try {
@@ -21,8 +18,8 @@ class UserController {
     }
     async create(req, res) {
         try {
-            const dto = (0, class_transformer_1.plainToInstance)(UserDTO_1.UserDTO, req.body);
-            const errors = await (0, class_validator_1.validate)(dto);
+            const dto = plainToInstance(UserDTO, req.body);
+            const errors = await validate(dto);
             if (errors.length > 0) {
                 const err = errors.map(err => ({
                     fieeld: err.property,
@@ -42,8 +39,8 @@ class UserController {
     }
     async update(req, res) {
         try {
-            const dto = (0, class_transformer_1.plainToInstance)(UserDTO_1.UserDTO, req.body);
-            const errors = await (0, class_validator_1.validate)(dto);
+            const dto = plainToInstance(UserDTO, req.body);
+            const errors = await validate(dto);
             if (errors.length > 0) {
                 const err = errors.map(err => ({
                     fieeld: err.property,
@@ -75,4 +72,3 @@ class UserController {
         }
     }
 }
-exports.UserController = UserController;

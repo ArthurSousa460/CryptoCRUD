@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import  { UserService } from "../Services/UserService";
+import  { UserService } from "../Services/UserService.js";
 import { plainToInstance} from "class-transformer";
 import { validate } from "class-validator";
-import { UserDTO } from "../DTOs/UserDTO";
+import { UserDTO } from "../DTOs/UserDTO.js";
 export class UserController {
     private service: UserService;
     constructor() {

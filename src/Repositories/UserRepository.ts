@@ -1,5 +1,5 @@
 import { PrismaClient, User } from "@prisma/client";
-import { UserDTO } from "../DTOs/UserDTO";
+import { UserDTO } from "../DTOs/UserDTO.js";
 
 export default class UserRepository {
     private repository: PrismaClient;

@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
-import UserRepository from "../Repositories/UserRepository";
-import { UserDTO } from "../DTOs/UserDTO";
+import UserRepository from "../Repositories/UserRepository.js";
+import { UserDTO } from "../DTOs/UserDTO.js";
 export class UserService {
     private repository: UserRepository;
 

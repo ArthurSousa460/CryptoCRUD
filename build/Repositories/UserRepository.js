@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const client_1 = require("@prisma/client");
-class UserRepository {
+import { PrismaClient } from "@prisma/client";
+export default class UserRepository {
     repository;
     constructor() {
-        this.repository = new client_1.PrismaClient();
+        this.repository = new PrismaClient();
     }
     async list() {
         return await this.repository.user.findMany();
@@ -65,4 +63,3 @@ class UserRepository {
         return user;
     }
 }
-exports.default = UserRepository;

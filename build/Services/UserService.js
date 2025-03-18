@@ -1,14 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
-const UserRepository_1 = __importDefault(require("../Repositories/UserRepository"));
-class UserService {
+import UserRepository from "../Repositories/UserRepository.js";
+export class UserService {
     repository;
     constructor() {
-        this.repository = new UserRepository_1.default();
+        this.repository = new UserRepository();
     }
     async list() {
         return await this.repository.list();
@@ -41,4 +35,3 @@ class UserService {
         return true;
     }
 }
-exports.UserService = UserService;
